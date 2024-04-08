@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BudgetMainApp.h"
 #include "Menus.h"
+#include "Utils.h"
 
 
 using namespace std;
@@ -8,14 +9,22 @@ using namespace std;
 int main()
 {
     char choice;
+    BudgetMainApp budgetMainApp;
+
     while(true)
     {
         Menus::showMainMenu();
-        cin >> choice;
+        choice = Utils::getCharacter();
 
         switch(choice)
         {
-        case '9':
+        case '1':
+            budgetMainApp.listAllUsers();
+            break;
+         case '2':
+            budgetMainApp.registerUser();
+            break;
+         case '9':
             cout << "\nSee you next time!\n" << endl;
             exit(0);
             break;
