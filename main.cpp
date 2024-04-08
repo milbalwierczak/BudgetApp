@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BudgetMainApp.h"
 #include "Menus.h"
+#include "Utils.h"
 
 
 using namespace std;
@@ -11,7 +12,7 @@ int main()
     while(true)
     {
         Menus::showMainMenu();
-        cin >> choice;
+        choice = Utils::getCharacter();
 
         switch(choice)
         {
