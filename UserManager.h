@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "User.h"
+#include "UserFile.h"
 #include "Utils.h"
 
 using namespace std;
@@ -16,6 +17,7 @@ class UserManager
 {
     int loggedUserId;
     vector <User> users;
+    UserFile userFile;
 
     /*Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
@@ -26,7 +28,7 @@ class UserManager
     int getNewUserId();
 
 public:
-    UserManager()
+    UserManager(string userFileName) : userFile(userFileName)
     {
         loggedUserId = 0;
     };
