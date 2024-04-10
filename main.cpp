@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     char choice;
-    BudgetMainApp budgetMainApp;
+    BudgetMainApp budgetMainApp("users.xml");
 
     while(true)
     {
