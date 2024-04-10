@@ -16,6 +16,7 @@ class UserFile : public File
 public:
     UserFile(string userFileName) : File(userFileName) {};
     void addUserToFile(User user);
+    vector <User> loadUsersFromFile();
 };
 
 #endif
