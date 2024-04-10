@@ -31,6 +31,7 @@ public:
     UserManager(string userFileName) : userFile(userFileName)
     {
         loggedUserId = 0;
+        users = userFile.loadUsersFromFile();
     };
     int getLoggedUserId();
     void registerUser();

@@ -25,4 +25,38 @@ void UserFile::addUserToFile(User user)
     xml.Save(getFileName().c_str());
 }
 
+vector <User> UserFile::loadUsersFromFile()
+{
+    User user;
+    vector <User> users;
+    CMarkup xml;
 
+    if (xml.Load(getFileName().c_str()))
+    {
+
+        xml.FindElem("Users");
+        xml.IntoElem();
+
+        while (xml.FindElem("User"))
+        {
+            xml.IntoElem();
+
+            xml.FindElem("Id");
+            user.id = stoi(xml.GetData());
+            xml.FindElem("Login");
+            user.login = xml.GetData();
+            xml.FindElem("Password");
+            user.password = xml.GetData();
+            xml.FindElem("FirstName");
+            user.firstName = xml.GetData();
+            xml.FindElem("LastName");
+            user.lastName = xml.GetData();
+
+            users.push_back(user);
+
+            xml.OutOfElem();
+        }
+    }
+
+    return users;
+}
