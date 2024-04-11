@@ -38,12 +38,12 @@ int main()
         }
         else
         {
-            Menus::showMainMenu();
+            Menus::showUserMenu();
             choice = Utils::getCharacter();
 
             switch(choice)
             {
-            case '1':
+            /*case '1':
                 budgetMainApp.logInUser();
                 break;
             case '2':
@@ -52,7 +52,7 @@ int main()
             case '9':
                 cout << "\nSee you next time!\n" << endl;
                 exit(0);
-                break;
+                break;*/
             default:
                 cout << "\nCharacter not used. Try again.\n" << endl;
                 system("pause");
