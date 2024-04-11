@@ -14,6 +14,8 @@ public:
     BudgetMainApp(string userFileName) : userManager(userFileName) {};
     void registerUser();
     void listAllUsers();
+    void logInUser();
+    bool isUserLoggedIn();
 };
 
 #endif

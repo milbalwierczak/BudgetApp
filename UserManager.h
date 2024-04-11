@@ -19,10 +19,6 @@ class UserManager
     vector <User> users;
     UserFile userFile;
 
-    /*Uzytkownik podajDaneNowegoUzytkownika();
-    int pobierzIdNowegoUzytkownika();
-    bool czyIstniejeLogin(string login);*/
-
     User setNewUserData();
     bool ifLoginExists(string login);
     int getNewUserId();
