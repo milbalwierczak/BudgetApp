@@ -147,4 +147,10 @@ bool UserManager::isUserLoggedIn()
         return false;
 }
 
+void UserManager::logoutUser()
+{
+    loggedUserId = 0;
+    return;
+}
+
 

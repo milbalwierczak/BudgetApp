@@ -16,6 +16,7 @@ public:
     void listAllUsers();
     void logInUser();
     bool isUserLoggedIn();
+    void logoutUser();
 };
 
 #endif

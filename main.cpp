@@ -48,11 +48,10 @@ int main()
                 break;
             case '2':
                 budgetMainApp.registerUser();
-                break;
-            case '9':
-                cout << "\nSee you next time!\n" << endl;
-                exit(0);
                 break;*/
+            case '9':
+                budgetMainApp.logoutUser();
+                break;
             default:
                 cout << "\nCharacter not used. Try again.\n" << endl;
                 system("pause");

@@ -20,3 +20,8 @@ bool BudgetMainApp::isUserLoggedIn()
     return userManager.isUserLoggedIn();
 }
 
+void BudgetMainApp::logoutUser()
+{
+    return userManager.logoutUser();
+}
+

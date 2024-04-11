@@ -33,6 +33,7 @@ public:
     void registerUser();
     void listAllUsers();
     void logInUser();
+    void logoutUser();
     bool isUserLoggedIn();
 
 
