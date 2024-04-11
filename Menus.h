@@ -9,6 +9,7 @@ class Menus {
 
 public:
     static void showMainMenu();
+    static void showUserMenu();
 };
 
 #endif

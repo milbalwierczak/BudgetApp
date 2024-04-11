@@ -13,25 +13,51 @@ int main()
 
     while(true)
     {
-        Menus::showMainMenu();
-        choice = Utils::getCharacter();
-
-        switch(choice)
+        if(!budgetMainApp.isUserLoggedIn())
         {
-        case '1':
-            budgetMainApp.listAllUsers();
-            break;
-         case '2':
-            budgetMainApp.registerUser();
-            break;
-         case '9':
-            cout << "\nSee you next time!\n" << endl;
-            exit(0);
-            break;
-        default:
-            cout << "\nCharacter not used. Try again.\n" << endl;
-            system("pause");
-            break;
+            Menus::showMainMenu();
+            choice = Utils::getCharacter();
+
+            switch(choice)
+            {
+            case '1':
+                budgetMainApp.logInUser();
+                break;
+            case '2':
+                budgetMainApp.registerUser();
+                break;
+            case '9':
+                cout << "\nSee you next time!\n" << endl;
+                exit(0);
+                break;
+            default:
+                cout << "\nCharacter not used. Try again.\n" << endl;
+                system("pause");
+                break;
+            }
+        }
+        else
+        {
+            Menus::showUserMenu();
+            choice = Utils::getCharacter();
+
+            switch(choice)
+            {
+            /*case '1':
+                budgetMainApp.logInUser();
+                break;
+            case '2':
+                budgetMainApp.registerUser();
+                break;*/
+            case '9':
+                budgetMainApp.logoutUser();
+                break;
+            default:
+                cout << "\nCharacter not used. Try again.\n" << endl;
+                system("pause");
+                break;
+
+            }
         }
     }
     return 0;

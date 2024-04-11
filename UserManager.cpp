@@ -8,8 +8,6 @@ void UserManager::registerUser()
 
     userFile.addUserToFile(user);
 
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
-
     cout << endl << "Account created succesfully" << endl << endl;
     system("pause");
 }
@@ -74,55 +72,49 @@ void UserManager::listAllUsers()
     }
     system("pause");
 }
-/*
-void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int id)
+
+int UserManager::getLoggedUserId()
 {
-    if (id>=0)
-        idZalogowanegoUzytkownika = id;
+    return loggedUserId;
 }
 
-int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika()
+void UserManager::logInUser()
 {
-    return idZalogowanegoUzytkownika;
-}
+    User user;
+    string login = "", password = "";
 
-void UzytkownikMenedzer::logowanieUzytkownika()
-{
-    Uzytkownik uzytkownik;
-    string login = "", haslo = "";
+    cout << "Enter login: ";
+    login = Utils::readLine();
 
-    cout << "Podaj login: ";
-    login = MetodyPomocnicze::wczytajLinie();
-
-    vector <Uzytkownik>::iterator itr = uzytkownicy.begin();
-    while (itr != uzytkownicy.end())
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end())
     {
-        if ((*itr).pobierzLogin() == login)
+        if ((*itr).login == login)
         {
-            for (int iloscProb = 3; iloscProb > 0; iloscProb--)
+            for (int numberOfRemainingAttempts = 3; numberOfRemainingAttempts > 0; numberOfRemainingAttempts--)
             {
-                cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
-                haslo = MetodyPomocnicze::wczytajLinie();
+                cout << "Enter password. Attempts left: " << numberOfRemainingAttempts << ": ";
+                password = Utils::readLine();
 
-                if ((*itr).pobierzHaslo() == haslo)
+                if ((*itr).password == password)
                 {
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                    cout << endl << "You logged in successfully." << endl << endl;
                     system("pause");
-                    idZalogowanegoUzytkownika =(*itr).pobierzId();
+                    loggedUserId =(*itr).id;
                     return;
                 }
             }
-            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            cout << "You entered wrong password 3 times. Logging-in interrupted" << endl;
             system("pause");
             return;
         }
         itr++;
     }
-    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    cout << "There is no user with this login" << endl << endl;
     system("pause");
     return;
 }
-
+ /*
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika()
 {
     string noweHaslo = "";
@@ -146,13 +138,19 @@ void UzytkownikMenedzer::wylogowanieUzytkownika()
     ustawIdZalogowanegoUzytkownika(0);
     return;
 }
-
-bool UzytkownikMenedzer::czyUzytkownikJestZalogowany()
+*/
+bool UserManager::isUserLoggedIn()
 {
-    if(idZalogowanegoUzytkownika > 0)
+    if(loggedUserId > 0)
         return true;
     else
         return false;
 }
 
-*/
+void UserManager::logoutUser()
+{
+    loggedUserId = 0;
+    return;
+}
+
+
