@@ -49,6 +49,9 @@ int main()
             case '2':
                 budgetMainApp.registerUser();
                 break;*/
+            case '6':
+                budgetMainApp.changeUserPassword();
+                break;
             case '9':
                 budgetMainApp.logoutUser();
                 break;

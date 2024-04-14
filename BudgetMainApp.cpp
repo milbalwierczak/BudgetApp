@@ -25,3 +25,8 @@ void BudgetMainApp::logoutUser()
     return userManager.logoutUser();
 }
 
+
+void BudgetMainApp::changeUserPassword()
+{
+    return userManager.changeUserPassword();
+}

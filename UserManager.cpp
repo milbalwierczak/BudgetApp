@@ -10,6 +10,7 @@ void UserManager::registerUser()
 
     cout << endl << "Account created succesfully" << endl << endl;
     system("pause");
+    return;
 }
 
 User UserManager::setNewUserData()
@@ -71,6 +72,7 @@ void UserManager::listAllUsers()
         cout << users[i].lastName << endl;
     }
     system("pause");
+    return;
 }
 
 int UserManager::getLoggedUserId()
@@ -114,31 +116,26 @@ void UserManager::logInUser()
     system("pause");
     return;
 }
- /*
-void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika()
-{
-    string noweHaslo = "";
-    cout << "Podaj nowe haslo: ";
-    noweHaslo = MetodyPomocnicze::wczytajLinie();
 
-    for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
+void UserManager::changeUserPassword()
+{
+    string newPassword = "";
+    cout << "Set new password: ";
+    newPassword = Utils::readLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
     {
-        if ((*itr).pobierzId() == idZalogowanegoUzytkownika)
+        if ((*itr).id == loggedUserId)
         {
-            (*itr).ustawHaslo(noweHaslo);
-            cout << "Haslo zostalo zmienione." << endl << endl;
+            (*itr).password = newPassword;
+            cout << "Password has been changed." << endl << endl;
             system("pause");
         }
     }
-    plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
-}
-
-void UzytkownikMenedzer::wylogowanieUzytkownika()
-{
-    ustawIdZalogowanegoUzytkownika(0);
+    userFile.changePasswordInFile(loggedUserId, newPassword);
     return;
 }
-*/
+
 bool UserManager::isUserLoggedIn()
 {
     if(loggedUserId > 0)
