@@ -9,14 +9,13 @@
 #include "Utils.h"
 #include "File.h"
 
-using namespace std;
-
 class UserFile : public File
 {
 public:
     UserFile(string userFileName) : File(userFileName) {};
     void addUserToFile(User user);
     vector <User> loadUsersFromFile();
+    void changePasswordInFile(int id, string password);
 };
 
 #endif

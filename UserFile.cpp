@@ -23,6 +23,8 @@ void UserFile::addUserToFile(User user)
     xml.AddElem("LastName", user.lastName);
 
     xml.Save(getFileName().c_str());
+
+    return;
 }
 
 vector <User> UserFile::loadUsersFromFile()
@@ -59,4 +61,35 @@ vector <User> UserFile::loadUsersFromFile()
     }
 
     return users;
+}
+
+void UserFile::changePasswordInFile(int id, string password)
+{
+    CMarkup xml;
+
+    if (xml.Load(getFileName().c_str()))
+    {
+        xml.FindElem("Users");
+        xml.IntoElem();
+
+        while (xml.FindElem("User"))
+        {
+            xml.IntoElem();
+            xml.FindElem("Id");
+
+            if(stoi(xml.GetData()) == id)
+            {
+                xml.FindElem("Password");
+                xml.SetData(password);
+                break;
+            }
+
+
+            xml.OutOfElem();
+        }
+
+    xml.Save(getFileName().c_str());
+    }
+
+    return;
 }

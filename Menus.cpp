@@ -15,6 +15,7 @@ void Menus::showUserMenu(){
     cout << "----    USER MENU   ----" << endl << endl;
     cout << "1. Add operation" << endl;
     cout << "2. Show balance" << endl;
+    cout << "6. Change password" << endl;
     cout << "9. Logout" << endl << endl;
     cout << "Choose option: ";
 
