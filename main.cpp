@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     char choice;
-    BudgetMainApp budgetMainApp("users.xml");
+    BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
 
     while(true)
     {
@@ -43,10 +43,10 @@ int main()
 
             switch(choice)
             {
-            /*case '1':
-                budgetMainApp.logInUser();
+            case '1':
+                budgetMainApp.addIncome();
                 break;
-            case '2':
+            /*case '2':
                 budgetMainApp.registerUser();
                 break;*/
             case '6':
