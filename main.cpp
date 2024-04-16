@@ -46,9 +46,9 @@ int main()
             case '1':
                 budgetMainApp.addIncome();
                 break;
-            /*case '2':
-                budgetMainApp.registerUser();
-                break;*/
+            case '2':
+                budgetMainApp.addExpense();
+                break;
             case '6':
                 budgetMainApp.changeUserPassword();
                 break;

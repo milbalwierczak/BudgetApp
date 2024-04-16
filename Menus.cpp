@@ -1,22 +1,29 @@
 #include "Menus.h"
 
 void Menus::showMainMenu(){
-    system("cls");
-    cout << "----    MAIN MENU   ----" << endl << endl;
+    showTitle("MAIN MENU");
     cout << "1. Login user" << endl;
     cout << "2. Register user" << endl;
     cout << "9. Exit app" << endl << endl;
     cout << "Choose option: ";
-
+    return;
 }
 
 void Menus::showUserMenu(){
-    system("cls");
-    cout << "----    USER MENU   ----" << endl << endl;
-    cout << "1. Add operation" << endl;
-    cout << "2. Show balance" << endl;
+    showTitle("USER MENU");
+    cout << "1. Add income" << endl;
+    cout << "2. Add expense" << endl;
     cout << "6. Change password" << endl;
     cout << "9. Logout" << endl << endl;
     cout << "Choose option: ";
+    return;
 
 }
+
+void Menus::showTitle(string title){
+    system("cls");
+    cout << "----    " << title << "   ----" << endl << endl;
+    return;
+}
+
+

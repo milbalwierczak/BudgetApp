@@ -125,7 +125,16 @@ bool DateMethods::validateDate(string dateAsString){
     month = (date / 100) % 100;
     year = date / 10000;
 
-    if(year > 1999 && year < getCurrentDate() / 10000){
+    if(year > 1999 && year <= getCurrentDate() / 10000 - 1){
+        if(month > 0 && month <= 12){
+            if(day > 0 && day <= getMonthLastDay(month, year) % 100){
+                return true;
+            }
+            else return false;
+        }
+        else return false;
+    }
+    else if(year == getCurrentDate() / 10000){
         if(month > 0 && month <= (getCurrentDate() / 100) % 100){
             if(day > 0 && day <= getCurrentMonthLastDayDate() % 100){
                 return true;

@@ -10,10 +10,13 @@
 
 class OperationFile : public File
 {
+    int lastOperationId;
 public:
-    OperationFile(string operationFileName) : File(operationFileName) {};
+    OperationFile(string operationFileName) : File(operationFileName) {
+    lastOperationId = 0; };
     void addOperationToFile(Operation operation);
-    vector <Operation> loadOperationsFromFile();
+    vector <Operation> loadOperationsFromFile(const int loggedUserId);
+    int getLastOperationId();
 };
 
 #endif

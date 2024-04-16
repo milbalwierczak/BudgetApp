@@ -7,6 +7,8 @@
 #include "Operation.h"
 #include "OperationFile.h"
 #include "DateMethods.h"
+#include "Type.h"
+#include "Menus.h"
 
 using namespace std;
 
@@ -19,10 +21,17 @@ class BudgetManager
 
     const int LOGGED_USER_ID;
 
+    Operation addOperationDetails(const Type &type);
+
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId)
-        : incomeFile(incomeFileName), expenseFile(expenseFileName), LOGGED_USER_ID(loggedUserId){};
+        : incomeFile(incomeFileName), expenseFile(expenseFileName), LOGGED_USER_ID(loggedUserId)
+        {
+        incomes = incomeFile.loadOperationsFromFile(LOGGED_USER_ID);
+        expenses = expenseFile.loadOperationsFromFile(LOGGED_USER_ID);
+        };
     void addIncome();
+    void addExpense();
 
 };
 

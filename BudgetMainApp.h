@@ -5,6 +5,7 @@
 #include "UserManager.h"
 #include "BudgetManager.h"
 
+
 using namespace std;
 
 class BudgetMainApp {
@@ -36,6 +37,7 @@ public:
     void changeUserPassword();
 
     void addIncome();
+    void addExpense();
 };
 
 #endif

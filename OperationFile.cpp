@@ -20,45 +20,54 @@ void OperationFile::addOperationToFile(Operation operation)
     xml.AddElem("UserId", operation.userId);
     xml.AddElem("Date", operation.date);
     xml.AddElem("Item", operation.item);
-    xml.AddElem("Amount", operation.amount);
+    xml.AddElem("Amount", to_string(operation.amount));
 
     xml.Save(getFileName().c_str());
+
+    lastOperationId++;
 
     return;
 }
 
-/*vector <Operation> OperationFile::loadUsersFromFile()
+vector <Operation> OperationFile::loadOperationsFromFile(const int loggedUserId)
 {
-    User user;
-    vector <User> users;
+    vector <Operation> operations;
+    Operation operation;
     CMarkup xml;
 
     if (xml.Load(getFileName().c_str()))
     {
-
-        xml.FindElem("Users");
+        xml.FindElem("Operations");
         xml.IntoElem();
 
-        while (xml.FindElem("User"))
+        while (xml.FindElem("Operation"))
         {
+            lastOperationId++;
             xml.IntoElem();
+            xml.FindElem("UserId");
 
-            xml.FindElem("Id");
-            user.id = stoi(xml.GetData());
-            xml.FindElem("Login");
-            user.login = xml.GetData();
-            xml.FindElem("Password");
-            user.password = xml.GetData();
-            xml.FindElem("FirstName");
-            user.firstName = xml.GetData();
-            xml.FindElem("LastName");
-            user.lastName = xml.GetData();
-
-            users.push_back(user);
-
+            if(stoi(xml.GetData()) == loggedUserId)
+            {
+                xml.FindElem("Id");
+                operation.id = stoi(xml.GetData());
+                xml.FindElem("UserId");
+                operation.userId = stoi(xml.GetData());
+                xml.FindElem("Date");
+                operation.date = stoi(xml.GetData());
+                xml.FindElem("Item");
+                operation.item = xml.GetData();
+                xml.FindElem("Amount");
+                operation.amount = stod(xml.GetData());
+            }
             xml.OutOfElem();
         }
+
+    xml.Save(getFileName().c_str());
     }
 
-    return users;
-}*/
+    return operations;
+}
+
+int OperationFile::getLastOperationId(){
+    return lastOperationId;
+}
