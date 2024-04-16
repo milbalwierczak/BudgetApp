@@ -9,7 +9,7 @@ void BudgetManager::addIncome(){
         operation.id = incomes.back().id + 1;
 
     operation.userId = LOGGED_USER_ID;
-    operation.date = 20240415;
+    operation.date = DateMethods::convertStringDateToInt("2025-07-19");
     operation.item = "Zakupy";
     operation.amount = 10.50;
 

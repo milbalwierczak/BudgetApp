@@ -6,6 +6,7 @@
 
 #include "Operation.h"
 #include "OperationFile.h"
+#include "DateMethods.h"
 
 using namespace std;
 
