@@ -69,7 +69,7 @@ Operation BudgetManager::addOperationDetails(const Type &type){
         cout << "Enter " << typeDescription << " amount with up to two decimal places";
         tempAmount = Utils::readLine();
     }
-    while(1 == 0); //while (!CashMethods::validateAmount(tempAmount));
+    while (!CashMethods::validateAmount(tempAmount));
 
     operation.amount = stod(tempAmount);
 

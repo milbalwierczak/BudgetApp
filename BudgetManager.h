@@ -7,6 +7,7 @@
 #include "Operation.h"
 #include "OperationFile.h"
 #include "DateMethods.h"
+#include "CashMethods.h"
 #include "Type.h"
 #include "Menus.h"
 
