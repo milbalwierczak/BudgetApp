@@ -49,6 +49,15 @@ int main()
             case '2':
                 budgetMainApp.addExpense();
                 break;
+            case '3':
+                budgetMainApp.showCurrentMonthBalance();
+                break;
+            case '4':
+                budgetMainApp.showPreviousMonthBalance();
+                break;
+            case '5':
+                budgetMainApp.showCustomPeriodBalance();
+                break;
             case '6':
                 budgetMainApp.changeUserPassword();
                 break;

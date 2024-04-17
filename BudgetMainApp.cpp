@@ -45,3 +45,15 @@ void BudgetMainApp::addExpense()
 {
     return budgetManager->addExpense();
 }
+
+void BudgetMainApp::showCurrentMonthBalance(){
+    return budgetManager->showCurrentMonthBalance();
+}
+
+void BudgetMainApp::showPreviousMonthBalance(){
+    return budgetManager->showPreviousMonthBalance();
+}
+
+void BudgetMainApp::showCustomPeriodBalance(){
+    return budgetManager->showCustomPeriodBalance();
+}

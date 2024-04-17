@@ -119,6 +119,14 @@ string DateMethods::convertIntDateToStringWithDashes(int dateAsInt){
 }
 
 bool DateMethods::validateDate(string dateAsString){
+
+    for(size_t i = 0; i < 10; i++){
+        if(i == 4 || i == 7){
+            if(dateAsString[i] != '-') return false;
+        }
+        else
+            if(!isdigit(dateAsString[i])) return false;
+    }
     int date = convertStringDateToInt(dateAsString), year = 0, month = 0, day = 0;
 
     day = date % 100;

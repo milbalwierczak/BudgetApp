@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 #include "Operation.h"
 #include "OperationFile.h"
@@ -23,6 +24,9 @@ class BudgetManager
     const int LOGGED_USER_ID;
 
     Operation addOperationDetails(const Type &type);
+    void showBalance(int startDate, int endDate);
+    void showOperation(Operation operation);
+    double calculateBalance(int startDate, int endDate);
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId)
@@ -31,8 +35,15 @@ public:
         incomes = incomeFile.loadOperationsFromFile(LOGGED_USER_ID);
         expenses = expenseFile.loadOperationsFromFile(LOGGED_USER_ID);
         };
+    ~BudgetManager(){
+        incomes.clear();
+        expenses.clear();
+    }
     void addIncome();
     void addExpense();
+    void showCurrentMonthBalance();
+    void showPreviousMonthBalance();
+    void showCustomPeriodBalance();
 
 };
 
