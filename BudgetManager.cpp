@@ -66,7 +66,7 @@ Operation BudgetManager::addOperationDetails(const Type &type){
 
     do
     {
-        cout << "Enter " << typeDescription << " amount with up to two decimal places";
+        cout << "Enter " << typeDescription << " amount with up to two decimal places: ";
         tempAmount = Utils::readLine();
     }
     while (!CashMethods::validateAmount(tempAmount));
@@ -76,3 +76,56 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     return operation;
 }
 
+void BudgetManager::showBalance(int startDate, int endDate){
+
+    cout << "             >>> Incomes <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    if (!incomes.empty())
+    {
+        for (vector <Operation> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if((*itr).date >= startDate && (*itr).date <= endDate) showOperation(*itr);
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "No incomes for given period." << endl << endl;
+    }
+
+    cout << "             >>> Expenses <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    if (!expenses.empty())
+    {
+        for (vector <Operation> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            if((*itr).date >= startDate && (*itr).date <= endDate) showOperation(*itr);
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "No expenses for given period." << endl << endl;
+    }
+    system("pause");
+}
+
+void BudgetManager::showOperation(Operation operation){
+    cout << "ID: " << operation.id;
+    cout << ", Date: " << DateMethods::convertIntDateToStringWithDashes(operation.date);
+    cout << ", Item: " << operation.item;
+    cout << ", Amount: " << setprecision(2) << fixed << operation.amount << endl;
+    return;
+}
+
+void BudgetManager::showCurrentMonthBalance(){
+    Menus::showTitle("Current Month Balance");
+    showBalance(DateMethods::getCurrentMonthFirstDayDate(), DateMethods::getCurrentMonthLastDayDate());
+}
+
+void BudgetManager::showPreviousMonthBalance(){
+    Menus::showTitle("Previous Month Balance");
+    showBalance(DateMethods::getPreviousMonthFirstDayDate(), DateMethods::getPreviousMonthLastDayDate());
+}
