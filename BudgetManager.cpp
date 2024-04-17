@@ -53,7 +53,7 @@ Operation BudgetManager::addOperationDetails(const Type &type){
 
     do
     {
-        cout << "Enter " << typeDescription << " date. Press 't' if you want to enter current date: ";
+        cout << "Enter " << typeDescription << " date in 'yyyy-mm-dd' format. Press 't' if you want to enter current date: ";
         tempDate = Utils::readLine();
         if(tempDate == "t") tempDate = DateMethods::convertIntDateToStringWithDashes(DateMethods::getCurrentDate());
     }
@@ -77,7 +77,7 @@ Operation BudgetManager::addOperationDetails(const Type &type){
 }
 
 void BudgetManager::showBalance(int startDate, int endDate){
-
+    int counter = 0;
     cout << "             >>> Incomes <<<" << endl;
     cout << "-----------------------------------------------" << endl;
 
@@ -85,15 +85,20 @@ void BudgetManager::showBalance(int startDate, int endDate){
     {
         for (vector <Operation> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
-            if((*itr).date >= startDate && (*itr).date <= endDate) showOperation(*itr);
+            if((*itr).date >= startDate && (*itr).date <= endDate) {
+                showOperation(*itr);
+                counter++;
+            }
         }
         cout << endl;
     }
-    else
+
+    if (counter == 0)
     {
-        cout << endl << "No incomes for given period." << endl << endl;
+        cout << "No incomes for given period." << endl << endl;
     }
 
+    counter = 0;
     cout << "             >>> Expenses <<<" << endl;
     cout << "-----------------------------------------------" << endl;
 
@@ -101,14 +106,20 @@ void BudgetManager::showBalance(int startDate, int endDate){
     {
         for (vector <Operation> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
-            if((*itr).date >= startDate && (*itr).date <= endDate) showOperation(*itr);
+            if((*itr).date >= startDate && (*itr).date <= endDate){
+                showOperation(*itr);
+                counter++;
+            }
         }
         cout << endl;
     }
-    else
+
+    if (counter == 0)
     {
-        cout << endl << "No expenses for given period." << endl << endl;
+        cout << "No expenses for given period." << endl << endl;
     }
+
+    cout << "TOTAL BALANCE: " << setprecision(2) << fixed << calculateBalance(startDate, endDate) << endl << endl;
     system("pause");
 }
 
@@ -128,4 +139,60 @@ void BudgetManager::showCurrentMonthBalance(){
 void BudgetManager::showPreviousMonthBalance(){
     Menus::showTitle("Previous Month Balance");
     showBalance(DateMethods::getPreviousMonthFirstDayDate(), DateMethods::getPreviousMonthLastDayDate());
+}
+
+void BudgetManager::showCustomPeriodBalance(){
+    int startDate, endDate;
+    string tempDate;
+
+    Menus::showTitle("Custom Period Balance");
+
+    do
+    {
+        cout << "Enter start date in 'yyyy-mm-dd' format. Press 't' if you want to enter current date: ";
+        tempDate = Utils::readLine();
+        if(tempDate == "t") tempDate = DateMethods::convertIntDateToStringWithDashes(DateMethods::getCurrentDate());
+    }
+    while (!DateMethods::validateDate(tempDate));
+
+    startDate = DateMethods::convertStringDateToInt(tempDate);
+
+    do
+    {
+        cout << "Enter end date in 'yyyy-mm-dd' format. Press 't' if you want to enter current date: ";
+        tempDate = Utils::readLine();
+        if(tempDate == "t") tempDate = DateMethods::convertIntDateToStringWithDashes(DateMethods::getCurrentDate());
+    }
+    while (!DateMethods::validateDate(tempDate));
+
+    endDate = DateMethods::convertStringDateToInt(tempDate);
+
+
+    showBalance(startDate, endDate);
+}
+
+double BudgetManager::calculateBalance(int startDate, int endDate){
+    double balance;
+
+    if (!incomes.empty())
+    {
+        for (vector <Operation> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if((*itr).date >= startDate && (*itr).date <= endDate) {
+                balance +=(*itr).amount;
+            }
+        }
+    }
+
+    if (!expenses.empty())
+    {
+        for (vector <Operation> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            if((*itr).date >= startDate && (*itr).date <= endDate){
+                balance -=(*itr).amount;
+            }
+        }
+    }
+
+    return balance;
 }

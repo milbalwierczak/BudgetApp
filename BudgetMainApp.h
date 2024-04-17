@@ -40,6 +40,7 @@ public:
     void addExpense();
     void showCurrentMonthBalance();
     void showPreviousMonthBalance();
+    void showCustomPeriodBalance();
 };
 
 #endif

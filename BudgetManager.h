@@ -26,6 +26,7 @@ class BudgetManager
     Operation addOperationDetails(const Type &type);
     void showBalance(int startDate, int endDate);
     void showOperation(Operation operation);
+    double calculateBalance(int startDate, int endDate);
 
 public:
     BudgetManager(string incomeFileName, string expenseFileName, int loggedUserId)
@@ -42,6 +43,7 @@ public:
     void addExpense();
     void showCurrentMonthBalance();
     void showPreviousMonthBalance();
+    void showCustomPeriodBalance();
 
 };
 
